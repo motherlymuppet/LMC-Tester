@@ -4,6 +4,8 @@ import kotlin.math.abs
 
 class Emulator(mailboxes: IntArray, private val testIterator: TestIterator) : Runnable {
     private val mailboxes = mailboxes.clone()
+    var totalTicks = 0L
+    var totalTests = 0L
 
     override fun run() {
         if (mailboxes.size > 100) {
@@ -20,7 +22,8 @@ class Emulator(mailboxes: IntArray, private val testIterator: TestIterator) : Ru
             }
 
             try {
-                runTest(nextTest)
+                totalTicks += runTest(nextTest)
+                totalTests++
             }
             catch (ex: LmcException) {
                 println(ex.message)
@@ -28,7 +31,7 @@ class Emulator(mailboxes: IntArray, private val testIterator: TestIterator) : Ru
         }
     }
 
-    private fun runTest(test: Test) {
+    private fun runTest(test: Test): Int {
         val inputs = test.inputs.toMutableList()
         val outputs = test.outputs.toMutableList()
 
@@ -121,5 +124,7 @@ class Emulator(mailboxes: IntArray, private val testIterator: TestIterator) : Ru
         if (outputs.isNotEmpty()) {
             throw LmcException(test, "Not all expected outputs were returned")
         }
+
+        return tickCount
     }
 }

@@ -15,9 +15,11 @@ fun main(args: Array<String>) {
 
     val testIterator = TestIterator()
 
-    val threads = (1..Runtime.getRuntime().availableProcessors()).map { _ ->
-        Thread(Emulator(mailboxes, testIterator))
+    val emulators = (1..Runtime.getRuntime().availableProcessors()).map { _ ->
+        Emulator(mailboxes, testIterator)
     }
+
+    val threads = emulators.map { Thread(it) }
 
     val time = measureTimeMillis {
         threads.forEach { it.start() }
@@ -25,4 +27,10 @@ fun main(args: Array<String>) {
     }
 
     println("${time.toDouble()/1000} seconds")
+
+    val (tests, ticks) = emulators.fold(0L to 0L) { (tests, ticks) , emulator ->
+        (tests + emulator.totalTests) to (ticks + emulator.totalTicks)
+    }
+
+    println("${ticks/tests} fetch execute cycles average")
 }
