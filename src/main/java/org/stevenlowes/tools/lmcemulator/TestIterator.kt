@@ -3,7 +3,7 @@ package org.stevenlowes.tools.lmcemulator
 class TestIterator {
     private var value = 100
     private val maxValue = 999
-    private var fromBase = 10
+    private var fromBase = 0
     private val maxFromBase = 15
     private var toBase = 0
     private val maxToBase = 15
