@@ -26,11 +26,11 @@ fun main(args: Array<String>) {
         threads.forEach { it.join() }
     }
 
-    println("${time.toDouble()/1000} seconds")
-
     val (tests, ticks) = emulators.fold(0L to 0L) { (tests, ticks) , emulator ->
         (tests + emulator.totalTests) to (ticks + emulator.totalTicks)
     }
 
+    println("$tests tests completed")
     println("${ticks/tests} fetch execute cycles average")
+    println("${time.toDouble()/1000} seconds total runtime")
 }
