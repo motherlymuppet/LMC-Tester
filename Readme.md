@@ -1,3 +1,11 @@
+# LMC Emulator
+
+This was mostly created for 1st-year Computer Science students who have a project in LMC (little man/minion computer)
+
+[See here](http://community.dur.ac.uk/m.j.r.bordewich/LMC.html)
+
+## Description
+
 Magnus' batch tester is awful. This one is better.
 Nobody listened when I told them they should write an emulator so I did.
 It's pretty easy to edit the test generator to fit your needs. (Future years?)
