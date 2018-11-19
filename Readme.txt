@@ -21,3 +21,9 @@ Errors appear in the terminal. If you have lots of errors, it will be hard to re
 Source code is on gituhb: https://github.com/motherlymuppet/LMC-Tester
 
 Launch with java -jar tester.jar.
+
+
+## Development
+To edit which test cases are used, edit `Tester.kt`, which works like an Iterator.
+
+I don't really see any reason why this wouldn't work for programs of arbitrary size - you would just need to change the size of the mailbox array (or use a list). Someone would need to write a compiler that supports over 100 mailboxes though, as this only works with LMC bytecode (not assembly).
